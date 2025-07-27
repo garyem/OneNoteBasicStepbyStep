@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneNote Step-by-Step Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #6441a4;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #6441a4;
+        }
+        
+        h2 {
+            color: #6441a4;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin: 20px 0 15px 0;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+        
+        .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6441a4, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+        }
+        
+        .step {
+            background: linear-gradient(135deg, #f8f9ff, #e8f0ff);
+            border-left: 4px solid #6441a4;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .step-number {
+            background: #6441a4;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+            top: 20px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #6441a4;
+            margin-bottom: 10px;
+            padding-left: 25px;
+        }
+        
+        .step-content {
+            padding-left: 25px;
+        }
+        
+        .click-path {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+            color: #856404;
+        }
+        
+        .expect {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            color: #0c5460;
+        }
+        
+        .expect::before {
+            content: "👀 You should see: ";
+            font-weight: bold;
+        }
+        
+        .version-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .version-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .version-tab:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+        
+        .version-content {
+            display: none;
+        }
+        
+        .version-content.active {
+            display: block;
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .tip {
+            background: linear-gradient(135deg, #84fab0, #8fd3f4);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .shortcut {
+            background: #6441a4;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .step-content {
+                padding-left: 15px;
+            }
+            .step-title {
+                padding-left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 OneNote Step-by-Step Guide</h1>
+        <p class="subtitle">Complete instructions for meeting pros</p>
+        
+        <!-- SECTION 1: INITIAL SETUP -->
+        <div class="section">
+            <h2><span class="icon">🚀</span>Section 1: Initial Setup & First Notebook</h2>
+            
+            <div class="version-tabs">
+                <div class="version-tab" onclick="showVersion('setup', 'desktop')">🖥️ Desktop App</div>
+                <div class="version-tab" onclick="showVersion('setup', 'web')">🌐 Web Version</div>
+            </div>
+            
+            <!-- Desktop Setup -->
+            <div id="setup-desktop" class="version-content active">
+                <h3>Desktop App Setup</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Open OneNote Desktop App</div>
+                    <div class="step-content">
+                        <div class="click-path">Start Menu → Type "OneNote" → Click "OneNote" (not OneNote for Windows 10)</div>
+                        <div class="expect">OneNote opens with a purple interface showing recent notebooks or a welcome screen</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Create Your First Notebook</div>
+                    <div class="step-content">
+                        <div class="click-path">File → New → Choose location (OneDrive recommended) → Type notebook name "Work Notes"</div>
+                        <div class="expect">A dialog box appears asking for notebook name and storage location</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Create the Notebook</div>
+                    <div class="step-content">
+                        <div class="click-path">Click "Create Notebook" button (blue button at bottom right of dialog)</div>
+                        <div class="expect">OneNote creates the notebook and opens it. You'll see "Work Notes" at the top, with one default section called "New Section 1"</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Rename the Section</div>
+                    <div class="step-content">
+                        <div class="click-path">Right-click on "New Section 1" tab → Select "Rename" → Type "Meetings"</div>
+                        <div class="expect">The section tab now shows "Meetings" instead of "New Section 1"</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Create Your First Page</div>
+                    <div class="step-content">
+                        <div class="click-path">Press <span class="shortcut">Ctrl + N</span> OR click "Add Page" on the right side</div>
+                        <div class="expect">A new blank page appears with a cursor in the title area at the top</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Name Your Page</div>
+                    <div class="step-content">
+                        <div class="click-path">Type "Meeting Template" in the title area → Click anywhere below to start adding content</div>
+                        <div class="expect">The page title shows "Meeting Template" and cursor moves to the content area</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Web Setup -->
+            <div id="setup-web" class="version-content">
+                <h3>Web Version Setup</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Open OneNote Web</div>
+                    <div class="step-content">
+                        <div class="click-path">Go to onenote.com → Click "Sign in" → Enter your Microsoft account credentials</div>
+                        <div class="expect">You'll see the OneNote home page with any existing notebooks or a "Create notebook" option</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Create New Notebook</div>
+                    <div class="step-content">
+                        <div class="click-path">Click "+ New notebook" (purple button) → Type "Work Notes" in the name field</div>
+                        <div class="expect">A dialog appears with a text field for the notebook name</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Create the Notebook</div>
+                    <div class="step-content">
+                        <div class="click-path">Click "Create" button (purple button at bottom of dialog)</div>
+                        <div class="expect">OneNote opens your new notebook with a default section and blank page ready</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Rename the Section</div>
+                    <div class="step-content">
+                        <div class="click-path">Right-click on the section tab → Select "Rename Section" → Type "Meetings"</div>
+                        <div class="expect">The section tab updates to show "Meetings"</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Name Your First Page</div>
+                    <div class="step-content">
+                        <div class="click-path">Click in the title area (says "Untitled page") → Type "Meeting Template"</div>
+                        <div class="expect">The page title changes to "Meeting Template" and appears in the page list on the right</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECTION 2: MEETING RECORDING -->
+        <div class="section">
+            <h2><span class="icon">🎙️</span>Section 2: Recording Meetings with Transcription</h2>
+            
+            <div class="warning">
+                <strong>⚠️ Important:</strong> Meeting transcription requires Microsoft Teams integration. Make sure you're using the same Microsoft account for both OneNote and Teams.
+            </div>
+            
+            <div class="version-tabs">
+                <div class="version-tab" onclick="showVersion('recording', 'teams')">📞 Teams Integration</div>
+                <div class="version-tab" onclick="showVersion('recording', 'manual')">📝 Manual Recording</div>
+            </div>
+            
+            <!-- Teams Integration -->
+            <div id="recording-teams" class="version-content active">
+                <h3>Recording with Teams (Automatic Transcription)</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Start Your Teams Meeting</div>
+                    <div class="step-content">
+                        <div class="click-path">Open Teams → Join or start your meeting as normal</div>
+                        <div class="expect">You're in the Teams meeting with video/audio controls visible</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Start Recording</div>
+                    <div class="step-content">
+                        <div class="click-path">Click "More actions" (three dots ⋯) → Click "Start recording"</div>
+                        <div class="expect">A red recording indicator appears in the meeting, and all participants see "Recording started" notification</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Enable Live Transcription (Optional but Recommended)</div>
+                    <div class="step-content">
+                        <div class="click-path">Click "More actions" (⋯) → Click "Start transcription"</div>
+                        <div class="expect">Live captions appear at the bottom of your screen showing what people are saying in real-time</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Take Notes in OneNote During Meeting</div>
+                    <div class="step-content">
+                        <div class="click-path">Alt + Tab to OneNote → Create new page → Type meeting name and date → Take key notes</div>
+                        <div class="expect">You can switch between Teams and OneNote while the meeting records automatically</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Stop Recording</div>
+                    <div class="step-content">
+                        <div class="click-path">Click "More actions" (⋯) → Click "Stop recording"</div>
+                        <div class="expect">Recording stops, and Teams begins processing the recording and transcript</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Access the Transcript (After Meeting)</div>
+                    <div class="step-content">
+                        <div class="click-path">Teams → Calendar → Find your meeting → Click meeting → Click "Recording and transcript"</div>
+                        <div class="expect">You'll see the recording video and a downloadable transcript with speaker names and timestamps</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Manual Recording -->
+            <div id="recording-manual" class="version-content">
+                <h3>Manual Audio Recording (Desktop Only)</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Prepare Your OneNote Page</div>
+                    <div class="step-content">
+                        <div class="click-path">Open OneNote → Create new page → Title it with meeting name and date</div>
+                        <div class="expect">You have a blank page ready for notes with the meeting title at the top</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Start Audio Recording</div>
+                    <div class="step-content">
+                        <div class="click-path">Insert tab → Audio (microphone icon) → Click "Record Audio"</div>
+                        <div class="expect">A small audio control panel appears, and recording begins immediately</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Take Notes While Recording</div>
+                    <div class="step-content">
+                        <div class="click-path">Click anywhere on the page → Start typing your notes normally</div>
+                        <div class="expect">Your notes appear on the page while audio continues recording in the background</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Stop Recording</div>
+                    <div class="step-content">
+                        <div class="click-path">Click the "Stop" button in the audio control panel</div>
+                        <div class="expect">An audio file icon appears on your page where you can click to replay the recording</div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Pro Tip:</strong> When you click anywhere in your notes, OneNote will jump to that exact moment in the audio recording!
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECTION 3: WORKING WITH TRANSCRIPTS -->
+        <div class="section">
+            <h2><span class="icon">📋</span>Section 3: Working with Meeting Transcripts</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">Download Transcript from Teams</div>
+                <div class="step-content">
+                    <div class="click-path">Teams → Calendar → Your meeting → Recording and transcript → Click "Download transcript"</div>
+                    <div class="expect">A .vtt or .docx file downloads to your computer containing the full transcript with timestamps and speaker names</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">Copy Transcript to OneNote</div>
+                <div class="step-content">
+                    <div class="click-path">Open the downloaded transcript file → Select all text (Ctrl + A) → Copy (Ctrl + C) → Go to OneNote → Paste (Ctrl + V)</div>
+                    <div class="expect">The full transcript appears in OneNote with speaker names and timestamps preserved</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">Find Action Items in Transcript</div>
+                <div class="step-content">
+                    <div class="click-path">Press <span class="shortcut">Ctrl + F</span> → Search for keywords like "will do", "action", "need to", "follow up", "assign"</div>
+                    <div class="expect">OneNote highlights all instances of your search term throughout the transcript</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-title">Extract Key Quotes</div>
+                <div class="step-content">
+                    <div class="click-path">Highlight important text in transcript → Copy (Ctrl + C) → Click elsewhere on page → Paste → Add context or action needed</div>
+                    <div class="expect">You now have key quotes separate from the full transcript for easy reference</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-title">Create Action Items with Checkboxes</div>
+                <div class="step-content">
+                    <div class="click-path">Type the action item → Press <span class="shortcut">Ctrl + 1</span> → Add person's name with @</div>
+                    <div class="expect">A checkbox appears next to your action item, and you can check it off when completed</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">6</div>
+                <div class="step-title">Tag Important Items</div>
+                <div class="step-content">
+                    <div class="click-path">Select text → Press <span class="shortcut">Ctrl + 2</span> for Important tag OR <span class="shortcut">Ctrl + 3</span> for Question tag</div>
+                    <div class="expect">Colored tag icons appear next to your text, making them easy to find later</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECTION 4: ORGANIZING PAGES -->
+        <div class="section">
+            <h2><span class="icon">📁</span>Section 4: Organizing Your Meeting Notes</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">Create New Sections for Different Teams/Projects</div>
+                <div class="step-content">
+                    <div class="click-path">Right-click on existing section tab → "New Section" → Type section name (e.g., "Team Alpha", "Project Beta")</div>
+                    <div class="expect">A new section tab appears next to your existing ones</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">Move Pages Between Sections</div>
+                <div class="step-content">
+                    <div class="click-path">Right-click on page title in page list → "Move or Copy" → Select destination section → Click "Move"</div>
+                    <div class="expect">The page disappears from current section and appears in the destination section</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">Create Subpages for Follow-ups</div>
+                <div class="step-content">
+                    <div class="click-path">Right-click on a page → "New Subpage" → Name it "Follow-up Actions" or "Next Steps"</div>
+                    <div class="expect">A subpage appears indented under the main page in the page list</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-title">Use Search to Find Old Notes</div>
+                <div class="step-content">
+                    <div class="click-path">Press <span class="shortcut">Ctrl + E</span> → Type keywords from the meeting you're looking for</div>
+                    <div class="expect">Search results show all pages containing your keywords, with preview text highlighting the matches</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECTION 5: QUICK REFERENCE -->
+        <div class="section">
+            <h2><span class="icon">⚡</span>Section 5: Essential Shortcuts Quick Reference</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px;">
+                    <h3 style="color: white; margin-bottom: 15px;">📝 Creating & Navigation</h3>
+                    <p><span class="shortcut">Ctrl + N</span> - New page</p>
+                    <p><span class="shortcut">Ctrl + E</span> - Search everything</p>
+                    <p><span class="shortcut">Ctrl + G</span> - Go to specific page</p>
+                    <p><span class="shortcut">F5</span> - Sync notebook</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ff6b6b, #ffa500); color: white; padding: 20px; border-radius: 10px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🏷️ Tags & Organization</h3>
+                    <p><span class="shortcut">Ctrl + 1</span> - To-do checkbox</p>
+                    <p><span class="shortcut">Ctrl + 2</span> - Important tag</p>
+                    <p><span class="shortcut">Ctrl + 3</span> - Question tag</p>
+                    <p><span class="shortcut">Tab</span> - Indent (outline)</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #84fab0, #8fd3f4); color: white; padding: 20px; border-radius: 10px;">
+                    <h3 style="color: white; margin-bottom: 15px;">📅 Time & Date</h3>
+                    <p><span class="shortcut">Ctrl + Alt + D</span> - Insert date</p>
+                    <p><span class="shortcut">Ctrl + Alt + T</span> - Insert time</p>
+                    <p><span class="shortcut">Ctrl + F</span> - Find on page</p>
+                    <p><span class="shortcut">F3</span> - Find next</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showVersion(section, version) {
+            // Hide all content for this section
+            const allContent = document.querySelectorAll(`[id^="${section}-"]`);
+            allContent.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show selected version
+            document.getElementById(`${section}-${version}`).classList.add('active');
+            
+            // Update tab styles
+            const allTabs = document.querySelectorAll('.version-tab');
+            allTabs.forEach(tab => {
+                tab.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+            });
+            
+            event.target.style.background = 'linear-gradient(135deg, #764ba2, #667eea)';
+        }
+    </script>
+</body>
+</html>
